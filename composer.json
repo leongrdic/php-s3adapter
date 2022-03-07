@@ -1,0 +1,14 @@
+{
+  "name": "leongrdic/s3adapter",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0",
+    "aws/aws-sdk-php": "^3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Le\\S3Adapter\\": "src/"
+    }
+  }
+}
