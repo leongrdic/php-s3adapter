@@ -14,6 +14,7 @@ class S3Adapter
         string                    $secret,
         string                    $endpoint = '',
         string                    $version = 'latest',
+        bool                      $useSharedConfig = false,
         public ?S3ClientInterface $s3Client = null
     )
     {
@@ -23,8 +24,9 @@ class S3Adapter
             'endpoint' => $endpoint,
             'credentials' => [
                 'key' => $key,
-                'secret' => $secret
-            ]
+                'secret' => $secret,
+            ],
+            'use_aws_shared_config_files' => $useSharedConfig,
         ]);
     }
 
@@ -32,8 +34,8 @@ class S3Adapter
     {
         return $this->s3Client->putObject([
             'Bucket' => $this->bucket,
-            'Key' => $key,
-            'Body' => $data,
+            'Key'    => $key,
+            'Body'   => $data,
         ]);
     }
 
@@ -41,7 +43,7 @@ class S3Adapter
     {
         $result = $this->s3Client->getObject([
             'Bucket' => $this->bucket,
-            'Key' => $key,
+            'Key'    => $key,
         ]);
 
         return $justBody ? $result['Body'] : $result;
